@@ -1,30 +1,30 @@
 # Reviews Assistant
 
-**Reviews Assistant** — навчальний full-stack застосунок із вебінару про інтеграцію OpenAI API з .NET. Користувачі залишають відгуки, а адміністратор за допомогою AI аналізує їхню тональність, пріоритет, категорію й терміновість, а також генерує чернетки відповідей.
+**Reviews Assistant** is a training full-stack app from a webinar on integrating the OpenAI API with .NET. Users submit reviews, and an administrator uses AI to analyze sentiment, priority, category, and urgency, and to generate draft replies.
 
-Технології: ASP.NET Core (.NET 10), Angular, PostgreSQL, Entity Framework Core, JWT та OpenAI Responses API.
+Stack: ASP.NET Core (.NET 10), Angular, PostgreSQL, Entity Framework Core, JWT, and the OpenAI Responses API.
 
-## Передумови
+## Prerequisites
 
 - .NET SDK 10;
-- Node.js і npm;
+- Node.js and npm;
 - PostgreSQL;
 - OpenAI API key.
 
-## Налаштування
+## Configuration
 
-Відкрийте `api/ReviewsAssistant/ReviewsAssistant.WebAPI/appsettings.json` і замініть значення-заглушки:
+Open `api/ReviewsAssistant/ReviewsAssistant.WebAPI/appsettings.json` and replace the placeholders:
 
-- `ConnectionStrings:Reviews` — рядок підключення до PostgreSQL;
-- `Jwt:SigningKey` — довгий випадковий ключ для підпису JWT;
-- `Admin:Email` та `Admin:Password` — облікові дані адміністратора;
-- `Ai:OpenAi:ApiKey` — ваш ключ OpenAI API.
+- `ConnectionStrings:Reviews` — PostgreSQL connection string;
+- `Jwt:SigningKey` — a long random key for signing JWTs;
+- `Admin:Email` and `Admin:Password` — administrator credentials;
+- `Ai:OpenAi:ApiKey` — your OpenAI API key.
 
-Щоб увімкнути AI-аналіз, `Ai:Provider` має мати значення `OpenAi`. Для роботи без викликів OpenAI змініть його на `Stub`.
+To enable AI analysis, set `Ai:Provider` to `OpenAi`. To run without OpenAI calls, set it to `Stub`.
 
-> Не публікуйте реальні ключі або паролі. Для локальної розробки зручніше зберігати їх у `appsettings.Development.json` або User Secrets — файл `appsettings.Development.json` ігнорується Git.
+> Do not publish real keys or passwords. For local development, keep them in `appsettings.Development.json` or User Secrets — `appsettings.Development.json` is ignored by Git.
 
-Приклад секції AI:
+Example AI section:
 
 ```json
 "Ai": {
@@ -36,19 +36,19 @@
 }
 ```
 
-## Запуск
+## Running the app
 
-1. Створіть базу даних PostgreSQL і налаштуйте рядок підключення.
-2. Запустіть сервер в одному терміналі:
+1. Create a PostgreSQL database and set the connection string.
+2. Start the server in one terminal:
 
    ```bash
    cd api/ReviewsAssistant/ReviewsAssistant.WebAPI
    dotnet run
    ```
 
-   Під час запуску застосунок автоматично застосує міграції. API буде доступне за адресою `http://localhost:5296`.
+   On startup the app applies migrations automatically. The API is available at `http://localhost:5296`.
 
-3. В іншому терміналі встановіть залежності та запустіть клієнт:
+3. In another terminal, install dependencies and start the client:
 
    ```bash
    cd client
@@ -56,14 +56,14 @@
    npm start
    ```
 
-4. Відкрийте адресу, яку виведе Angular CLI. За замовчуванням клієнт звертається до API за адресою `http://localhost:5296`.
+4. Open the URL printed by the Angular CLI. By default the client calls the API at `http://localhost:5296`.
 
-## Можливості
+## Features
 
-- публічна форма для надсилання відгуків;
-- JWT-вхід до адміністративної панелі;
-- фільтрація та сортування відгуків;
-- AI-аналіз тональності, категорії, пріоритету й терміновості;
-- створення чернетки відповіді клієнту.
+- public form for submitting reviews;
+- JWT sign-in to the admin panel;
+- filtering and sorting reviews;
+- AI analysis of sentiment, category, priority, and urgency;
+- draft replies to customers.
 
-Повний опис продукту, архітектури, моделі даних і API — у [docs/project.md](docs/project.md).
+A full description of the product, architecture, data model, and API is in [docs/project.md](docs/project.md).
